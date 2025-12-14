@@ -1,15 +1,21 @@
+# Core ML
 torch==2.2.2
 torchvision==0.17.2
 
+# Numerical stack (PINNED for torch compatibility)
 numpy==1.26.4
 scipy==1.11.4
-protobuf==3.20.1
-psutil
-tqdm
-matplotlib==3.8.4
 
-streamlit
+# YOLOv5 hard requirements
+tqdm
+psutil
+protobuf==3.20.1
+matplotlib==3.8.4
+seaborn==0.13.2
 pandas
-Pillow
-opencv-python-headless
 PyYAML
+opencv-python-headless
+Pillow
+
+# Web app
+streamlit

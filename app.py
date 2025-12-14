@@ -11,6 +11,9 @@ st.set_page_config(page_title="Plant Disease Detection", layout="centered")
 @st.cache_resource
 def load_model(weights_path: str):
     # Load YOLOv5 from the LOCAL yolov5 folder in this repo
+    import os
+    os.environ["YOLOv5_AUTOINSTALL"] = "false"
+
     model = torch.hub.load(
         "yolov5",        # folder name that contains hubconf.py
         "custom",
