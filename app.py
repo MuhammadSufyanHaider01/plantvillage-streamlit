@@ -28,6 +28,8 @@ uploaded = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 if uploaded is not None:
     img = Image.open(uploaded).convert("RGB")
     st.image(img, caption="Input", use_column_width=True)
+    import os
+    os.environ["YOLOv5_AUTOINSTALL"] = "false"
 
     model = load_model(WEIGHTS_PATH)
     model.conf = conf
