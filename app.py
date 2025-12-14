@@ -2,6 +2,7 @@ import os
 import streamlit as st
 import torch
 from PIL import Image
+import numpy as np
 
 WEIGHTS_PATH = "best.pt"
 
@@ -31,7 +32,16 @@ if uploaded is not None:
     model = load_model(WEIGHTS_PATH)
     model.conf = conf
 
-    results = model(img)
+    # Convert PIL -> numpy uint8 (RGB)
+    im = np.array(img)
+
+# Some YOLOv5 versions expect BGR; safest is to pass RGB and let it handle,
+# but if it still errors, switch to BGR with im[:, :, ::-1]
+    if im.dtype != np.uint8:
+        im = im.astype(np.uint8)
+
+    results = model(im)
+
     annotated = results.render()[0]
     st.image(annotated, caption="Prediction", use_column_width=True)
 
